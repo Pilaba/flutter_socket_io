@@ -57,7 +57,7 @@ class SocketIO {
       cleanup();
     });
     onConnectErrorSubscription = onConnect.listen((args) {
-      _connectSyncCompleter!.completeError(args);
+      _connectSyncCompleter!.completeError(args as Object);
       cleanup();
     });
     await connect();
@@ -86,7 +86,7 @@ class SocketIO {
       Platform.isIOS ? argument : SocketMessage(argument).toPlatform();
 
   List<Object> _encodeMessages(List messages) =>
-      messages.map(_encodeArgument as _ Function(dynamic)).toList(growable: false) as List<Object>;
+      messages.map(_encodeArgument as Function(dynamic)).toList(growable: false) as List<Object>;
 
   ///listen to an event
   Stream<dynamic> on(String eventName) =>
