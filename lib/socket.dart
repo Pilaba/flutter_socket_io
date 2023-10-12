@@ -86,7 +86,7 @@ class SocketIO {
       Platform.isIOS ? argument : SocketMessage(argument).toPlatform();
 
   List<Object> _encodeMessages(List messages) =>
-      messages.map(_encodeArgument as Function(dynamic)).toList(growable: false) as List<Object>;
+      messages.map((message) => _encodeArgument(message as Object)).toList(growable: false) as List<Object>;
 
   ///listen to an event
   Stream<dynamic> on(String eventName) =>
