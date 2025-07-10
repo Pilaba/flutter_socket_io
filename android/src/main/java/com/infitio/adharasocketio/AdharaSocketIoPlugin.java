@@ -104,7 +104,6 @@ public class AdharaSocketIoPlugin implements MethodCallHandler {
           }
           options.enableLogging = this.enableLogging;
           Log.e(TAG, "Creating a new instance");
-          this.instances.put(this.currentIndex, AdharaSocket.getInstance(registrar, options));
           result.success(this.currentIndex++);
         } catch (URISyntaxException use) {
           result.error(use.toString(), null, null);
