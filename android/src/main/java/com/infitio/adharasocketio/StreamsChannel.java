@@ -40,17 +40,6 @@ final class StreamsChannel {
   }
 
   StreamsChannel(BinaryMessenger messenger, String name, MethodCodec codec) {
-    if (BuildConfig.DEBUG) {
-      if (messenger == null) {
-        Log.e(TAG, "Parameter messenger must not be null.");
-      }
-      if (name == null) {
-        Log.e(TAG, "Parameter name must not be null.");
-      }
-      if (codec == null) {
-        Log.e(TAG, "Parameter codec must not be null.");
-      }
-    }
     this.messenger = messenger;
     this.name = name;
     this.codec = codec;

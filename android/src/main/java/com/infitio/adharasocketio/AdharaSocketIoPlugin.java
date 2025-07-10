@@ -13,7 +13,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 
 /**
@@ -23,7 +22,6 @@ public class AdharaSocketIoPlugin implements MethodCallHandler {
 
   SparseArray<AdharaSocket> instances;
   private int currentIndex;
-  private final Registrar registrar;
   private final StreamsChannel streamsChannel;
   private static final String TAG = "Adhara:SocketIOPlugin";
   private boolean enableLogging = false;
@@ -34,13 +32,6 @@ public class AdharaSocketIoPlugin implements MethodCallHandler {
     }
   }
 
-  private AdharaSocketIoPlugin(Registrar registrar, StreamsChannel streamsChannel) {
-    this.instances = new SparseArray<>();
-    this.currentIndex = 0;
-    this.registrar = registrar;
-    this.streamsChannel = streamsChannel;
-    setupStreamsChannel();
-  }
 
   void setupStreamsChannel() {
     final AdharaSocketIoPlugin s = this;

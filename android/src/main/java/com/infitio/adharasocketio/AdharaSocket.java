@@ -22,7 +22,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.socket.client.Ack;
 import io.socket.client.IO;
 import io.socket.client.Manager;
@@ -48,16 +47,6 @@ class AdharaSocket implements MethodCallHandler {
     this.options = options;
     log("Creating socket with URL: " + options.uri);
     socket = AdharaSocket.manager.socket(options.namespace);
-  }
-
-  static AdharaSocket getInstance(Registrar registrar, Options options) throws URISyntaxException {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), PlatformConstants.MethodChannelNames.socketMethodChannel + String.valueOf(options.index));
-    // we create new manager instance every time here
-    // because manager cannot update the uri
-    AdharaSocket.manager = new Manager(new URI(options.uri), options);
-    AdharaSocket _socket = new AdharaSocket(channel, options);
-    channel.setMethodCallHandler(_socket);
-    return _socket;
   }
 
   // https://github.com/flutter/flutter/issues/34993#issue-459900986
